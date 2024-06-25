@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { Device } from '@ionic-enterprise/identity-vault';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +10,9 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class HomePage {
-  constructor() {}
+  systemPasscode: boolean = false;
+
+  constructor() {
+    Device.isSystemPasscodeSet().then((x) => (this.systemPasscode = x));
+  }
 }
